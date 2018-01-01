@@ -18,6 +18,6 @@ config.cache =  true
 config.url = 'http://acyort.com'
 config.scripts = ['archives.js']
 config.scripts_dir = '/'
-config.archives = {}
+config.archives = { per_page: 2 }
 
 new Acyort(config).build()

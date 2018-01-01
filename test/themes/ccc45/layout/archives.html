@@ -1,11 +1,28 @@
-{% extends 'layout.html' %}
-{% import 'partials/pagination.html' as pagination %}
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="{{ config.description }}" />
+<link rel="stylesheet" href="{{ _url('css/style.css') }}" />
+<title>{{ __('title.archives') }} | {{ config.title }}</title>
+</head>
 
-{% block title %}
-{{ __('title.archives') }} | {{ config.title }}
-{% endblock %}
+<body>
+<div class="header">
+  <div class="center">
+    <h1>
+      <a href="{{ _url() }}">{{ config.title }}</a>
+    </h1>
+    <p>{{ config.description }}</p>
+    <div class="menu">
+    {% for u in config.menu %}
+      <a href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
+    {% endfor %}
+    </div>
+  </div>
+</div>
 
-{% block content %}
 <div class="archives center">
   <p class="head-tag">{{ _n('archives', _posts().length) }}</p>
 
@@ -28,8 +45,26 @@
   </div>
 
   {% endfor %}
-
-  {{ pagination.render(page) }}
 </div>
 
-{% endblock %}
+<div id="pagination">
+  {% if page.prev %}
+  <a rel="prev" href="{{ _url(page.prev) }}">← {{ __('pager.prev') }}</a>
+  {% endif %}
+
+  <span>{{ __('pager.tip', page.current, page.total) }}</span>
+
+  {% if page.next %}
+  <a rel="next" href="{{ _url(page.next) }}">{{ __('pager.next') }} →</a>
+  {% endif %}
+</div>
+
+<div class="footer">
+  <div class="center">
+    &copy; {{ _time(Date.now(), 'YYYY') }} {{ config.title }} .
+    <a target="_blank" href="https://github.com/acyortjs/acyort">{{ __('powered', 'AcyOrt', 'Github') }}</a> .
+    <a target="_blank" href="https://github.com/{{ config.user }}/{{ config.repository }}/issues">Source</a>
+  </div>
+</div>
+</body>
+</html>
