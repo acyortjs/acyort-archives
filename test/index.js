@@ -28,7 +28,9 @@ function text(path, tag) {
 }
 
 describe('archives', () => {
-  it('width perpage', async () => {
+  it('width perpage', async function () {
+    this.timeout = 5000
+
     await new Acyort(config).build()
 
     assert(
@@ -44,11 +46,13 @@ describe('archives', () => {
       text(path.join(__dirname, 'archives', '2', 'index.html'), '#pagination a') === '← NewerOlder →'
     )
     assert(
-      text(path.join(__dirname, 'archives', '2', 'index.html'), '.entry span') === '02-0412-1901-1504-28'
+      text(path.join(__dirname, 'archives', '2', 'index.html'), '.entry span').split('-').length === 5
     )
   })
 
-  it('no perpage', async () => {
+  it('no perpage', async function () {
+    this.timeout = 5000
+
     config.archives = {}
     await new Acyort(config).build()
 
@@ -56,11 +60,13 @@ describe('archives', () => {
       text(path.join(__dirname, 'archives', 'index.html'), '#pagination span') === '1 / 1'
     )
     assert(
-      text(path.join(__dirname, 'archives', 'index.html'), '.entry span') === '07-2205-0104-2102-2602-0412-1901-1504-2804-28'
+      text(path.join(__dirname, 'archives', 'index.html'), '.entry span').split('-').length === 10
     )
   })
 
-  it('no set archives', async () => {
+  it('no set archives', async function () {
+    this.timeout = 5000
+
     delete config.archives
     fs.removeSync(path.join(__dirname, 'archives'))
     await new Acyort(config).build()
@@ -68,7 +74,9 @@ describe('archives', () => {
     assert(fs.existsSync(path.join(__dirname, 'archives')) === false)
   })
 
-  it('template wrong', async () => {
+  it('template wrong', async function () {
+    this.timeout = 5000
+
     const archivesPath = path.join(__dirname, 'themes/ccc45/layout')
 
     fs.copySync(path.join(archivesPath, 'archives.html'), path.join(archivesPath, 'archives0.html'))
