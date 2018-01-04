@@ -69,7 +69,7 @@ describe('archives', () => {
   })
 
   it('template wrong', async () => {
-    const archivesPath = path.join(__dirname, 'theme/ccc45/layout')
+    const archivesPath = path.join(__dirname, 'themes/ccc45/layout')
 
     fs.copySync(path.join(archivesPath, 'archives.html'), path.join(archivesPath, 'archives0.html'))
     fs.removeSync(path.join(archivesPath, 'archives.html'))
