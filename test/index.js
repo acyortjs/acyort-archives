@@ -13,6 +13,8 @@ config.scripts = ['archives.js']
 config.scripts_dir = '/'
 config.archives = { per_page: 4 }
 
+new Acyort(config).build()
+
 // function text(path, tag) {
 //   const html = fs.readFileSync(path)
 //   const $ = cheerio.load(html)
