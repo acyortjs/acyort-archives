@@ -38,6 +38,6 @@
     "power-assert": "^1.4.4"
   },
   "dependencies": {
-    "acyort-pagination": "^0.1.0"
+    "acyort-pagination": "^0.1.1"
   }
 }
