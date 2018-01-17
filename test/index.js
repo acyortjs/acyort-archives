@@ -56,7 +56,6 @@ describe('archives', () => {
     ].join(''))
   })
 
-/*
   it('liveReload', async function () {
     this.timeout(10000)
     config.archives = { per_page: 4 }
@@ -84,7 +83,11 @@ describe('archives', () => {
   [ 'archives/page/2/index.html' ],
   [ 'archives/page/3/index.html' ] ]))
 
-    acyort.server.close()
+    try {
+      acyort.server.close()
+    } catch (e) {
+      console.log(e)
+      process.exit(0)
+    }
   })
-*/
 })
