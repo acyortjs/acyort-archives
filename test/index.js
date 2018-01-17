@@ -11,79 +11,41 @@ config.base = __dirname
 config.cache =  true
 config.scripts = ['archives.js']
 config.scripts_dir = '/'
-config.archives = { per_page: 4 }
 
-new Acyort(config).build()
+function text(path, tag) {
+  const html = fs.readFileSync(path)
+  const $ = cheerio.load(html)
+  return $(tag).text().trim()
+}
 
-// function text(path, tag) {
-//   const html = fs.readFileSync(path)
-//   const $ = cheerio.load(html)
-//   return $(tag).text().trim()
-// }
+function dir(tag) {
+  return path.join(__dirname, tag, 'index.html')
+}
 
-// describe('archives', () => {
-//   it('width perpage', async function () {
-//     this.timeout = 5000
+describe('archives', () => {
+  it('no set archives', async function () {
+    this.timeout = 5000
+    fs.removeSync(path.join(__dirname, 'archives'))
+    await new Acyort(config).build()
+    assert(fs.existsSync(path.join(__dirname, 'archives')) === false)
+  })
 
-//     await new Acyort(config).build()
+  it('set archives', async function () {
+    this.timeout = 5000
+    config.archives = { per_page: 4 }
 
-//     assert(
-//       text(path.join(__dirname, 'archives', '2', 'index.html'), '.menu a') === 'Archives'
-//     )
-//     assert(
-//       text(path.join(__dirname, 'archives', '2', 'index.html'), '.head-tag') === '9 posts in total.'
-//     )
-//     assert(
-//       text(path.join(__dirname, 'archives', '2', 'index.html'), '.entry a') === '记录一下折腾黑苹果过程Adobe CEP 扩展相关Mirror - 基于 issues 的博客工具输入框输入值自动格式化'
-//     )
-//     assert(
-//       text(path.join(__dirname, 'archives', '2', 'index.html'), '#pagination a') === '← NewerOlder →'
-//     )
-//     assert(
-//       text(path.join(__dirname, 'archives', '2', 'index.html'), '.entry span').split('-').length === 5
-//     )
-//   })
+    await new Acyort(config).build()
 
-//   it('no perpage', async function () {
-//     this.timeout = 5000
+    assert(text(dir('archives'), 'p a') === [
+      'js 使用 setTimeout 排序',
+      'AcyOrt - 基于 Node.js 博客生成程序',
+      'Vue JSON 博客(AcyOrt/Vue/Vuex/Webpack)',
+      '不依赖服务端实现 react-router 的 browserHistory'
+    ].join(''))
 
-//     config.archives = {}
-//     await new Acyort(config).build()
-
-//     assert(
-//       text(path.join(__dirname, 'archives', 'index.html'), '#pagination span') === '1 / 1'
-//     )
-//     assert(
-//       text(path.join(__dirname, 'archives', 'index.html'), '.entry span').split('-').length === 10
-//     )
-//   })
-
-//   it('no set archives', async function () {
-//     this.timeout = 5000
-
-//     delete config.archives
-//     fs.removeSync(path.join(__dirname, 'archives'))
-//     await new Acyort(config).build()
-
-//     assert(fs.existsSync(path.join(__dirname, 'archives')) === false)
-//   })
-
-//   it('template wrong', async function () {
-//     this.timeout = 5000
-
-//     const archivesPath = path.join(__dirname, 'themes/ccc45/layout')
-
-//     fs.copySync(path.join(archivesPath, 'archives.html'), path.join(archivesPath, 'archives0.html'))
-//     fs.removeSync(path.join(archivesPath, 'archives.html'))
-
-//     after(() => {
-//       fs.copySync(path.join(archivesPath, 'archives0.html'), path.join(archivesPath, 'archives.html'))
-//       fs.removeSync(path.join(archivesPath, 'archives0.html'))
-//     })
-
-//     config.archives = {}
-//     await new Acyort(config).build()
-
-//     assert(fs.existsSync(path.join(__dirname, 'archives')) === false)
-//   })
-// })
+    assert(text(dir('archives/page/2'), '.pagination a') === [
+      '/archives/',
+      '/archives/page/3/'
+    ].join(''))
+  })
+})

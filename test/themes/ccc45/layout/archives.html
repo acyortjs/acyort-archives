@@ -15,7 +15,7 @@
 
 <div class="pagination">
   {% if page.prev %}
-  <a rel="prev" href="{{ _url(page.prev) }}">←</a>
+  <a rel="prev" href="{{ _url(page.prev) }}">{{ _url(page.prev) }}</a>
   {% endif %}
 
   <span>{{ page.current }}</span>
@@ -23,6 +23,6 @@
   <span>{{ page.total }}</span>
 
   {% if page.next %}
-  <a rel="next" href="{{ _url(page.next) }}">→</a>
+  <a rel="next" href="{{ _url(page.next) }}">{{ _url(page.next) }}</a>
   {% endif %}
 </div>
