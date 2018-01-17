@@ -56,6 +56,7 @@ describe('archives', () => {
     ].join(''))
   })
 
+/*
   it('liveReload', async function () {
     this.timeout(10000)
     config.archives = { per_page: 4 }
@@ -85,4 +86,5 @@ describe('archives', () => {
 
     acyort.server.close()
   })
+*/
 })
