@@ -83,11 +83,6 @@ describe('archives', () => {
   [ 'archives/page/2/index.html' ],
   [ 'archives/page/3/index.html' ] ]))
 
-    try {
-      acyort.server.close()
-    } catch (e) {
-      console.log(e)
-      process.exit(0)
-    }
+    process.exit(0)
   })
 })
