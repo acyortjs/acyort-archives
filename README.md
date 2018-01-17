@@ -29,12 +29,12 @@ archives:
 <div class="archives">
   {% for post in page.posts %}
 
-  {% if post.type === 'time' %}
-    <h3 class="year">{{ post.data }}</h3>
+  {% if !post.id  %}
+    <h3 class="year">{{ post }}</h3>
   {% else %}
     <p>
-      <span>{{ _time(post.data.created, 'MM-DD') }}</span>
-      <a href="{{ _url(post.data.url) }}">{{ post.data.title }}</a>
+      <span>{{ _time(post.created, 'MM-DD') }}</span>
+      <a href="{{ _url(post.data.url) }}">{{ post.title }}</a>
     </p>
   {% endif %}
 
@@ -54,4 +54,5 @@ archives:
   <a rel="next" href="{{ _url(page.next) }}">{{ _url(page.next) }}</a>
   {% endif %}
 </div>
+
 ```
