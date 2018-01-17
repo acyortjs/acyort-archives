@@ -16,7 +16,7 @@ notifications:
     on_failure: never
 
 script:
-  - npm test
+  - npm run test:unit && npm test
 
 after_script:
   - npm install -g codecov
