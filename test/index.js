@@ -84,5 +84,6 @@ describe('archives', () => {
   [ 'archives/page/3/index.html', 'builder' ] ]))
 
     acyort.server.close()
+    process.exit(0)
   })
 })
