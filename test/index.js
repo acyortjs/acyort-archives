@@ -73,7 +73,7 @@ describe('archives', () => {
     fs.writeFileSync(path.join(__dirname, '/themes/ccc45/layout/page.html'), pageTpl)
     await sleep(1000)
 
-    assert(spy.calledWith('/about/index.html') === true)
+    assert(spy.args[0][0] === '/about/index.html')
 
     fs.writeFileSync(path.join(__dirname, '/themes/ccc45/layout/archives.html'), archivesTpl)
     await sleep(1000)
