@@ -78,10 +78,10 @@ describe('archives', () => {
     fs.writeFileSync(path.join(__dirname, '/themes/ccc45/layout/archives.html'), archivesTpl)
     await sleep(1000)
 
-    assert(JSON.stringify(spy.args) === JSON.stringify([ [ '/about/index.html' ],
-  [ 'archives/index.html' ],
-  [ 'archives/page/2/index.html' ],
-  [ 'archives/page/3/index.html' ] ]))
+    assert(JSON.stringify(spy.args) === JSON.stringify([ [ '/about/index.html', 'builder' ],
+  [ 'archives/index.html', 'builder' ],
+  [ 'archives/page/2/index.html', 'builder' ],
+  [ 'archives/page/3/index.html', 'builder' ] ]))
 
     process.exit(0)
   })

@@ -1,7 +1,7 @@
 {
   "name": "acyort-archives",
-  "version": "0.1.1",
-  "description": "Archives module for AcyOrt",
+  "version": "1.0.0",
+  "description": "Archives supports for AcyOrt",
   "main": "index.js",
   "scripts": {
     "test": "npm run test:lint && npm run test:cover",
@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/acyortjs/acyort-archives#readme",
   "devDependencies": {
-    "acyort": "^2.0.9",
-    "acyort-config": "^0.1.5",
+    "acyort": "^2.1.0",
+    "acyort-config": "^1.0.2",
     "cheerio": "^1.0.0-rc.2",
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
