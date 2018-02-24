@@ -36,7 +36,7 @@ archives:
   {% else %}
     <p>
       <span>{{ _time(post.created, 'MM-DD') }}</span>
-      <a href="{{ _url(post.data.url) }}">{{ post.title }}</a>
+      <a href="{{ _url(post.url) }}">{{ post.title }}</a>
     </p>
   {% endif %}
 
