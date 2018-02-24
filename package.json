@@ -1,7 +1,7 @@
 {
   "name": "acyort-archives",
-  "version": "1.0.0",
-  "description": "Archives supports for AcyOrt",
+  "version": "1.0.1",
+  "description": "Archives for AcyOrt",
   "main": "index.js",
   "scripts": {
     "test": "npm run test:lint && npm run test:cover",
